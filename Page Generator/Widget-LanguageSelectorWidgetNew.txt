@@ -1,0 +1,142 @@
+<includeonly>
+
+<script type="text/javascript">
+
+function getTranslation(defaultLanguage, textDiv, displayDiv){
+           //debugger;
+       var targetLanguage, LangId;
+       if (defaultLanguage == 'IAST') targetLanguage = 'IAST';
+       else {
+           LangId = document.getElementById("LanguageId");
+           targetLanguage = LangId.options[LangId.selectedIndex].text;
+       }
+           //debugger;
+       var versetext2 = document.getElementById(textDiv).innerText ;
+       versetext1=versetext2.split("\n").join("ZZZ");
+           //debugger;
+     $.ajax({
+           // request type (GETorPOST)
+	type: "POST",
+            // the URL to which the request is sent
+	url: "http://localhost:8085/api/public?source=Devanagari&target=" + targetLanguage + "&text=" + versetext1,                
+            // data to be sent to the server
+	    //data: { action:'query', format:'json', lgname:'foo', lgpassword:'foobar' },        
+            // The type of data that you're expecting back from the server
+	dataType: 'text',        
+            // Function to be called if the request succeeds
+	success: function( data ){
+            //debugger;
+        data=data.split("ZZZ").join('\n');
+        var displayDivobj = document.getElementById("transliteration");
+        displayDivobj.innerText = data;
+            //debugger;
+    }
+});    
+}
+
+
+</script>
+<div  >
+<select name="Language Selection" id="LanguageId" onChange="getTranslation('<!--{$defaultLanguage}-->','<!--{$textDiv}-->','<!--{$displayDiv}-->');">
+<option value="Ariyaka">Ariyaka</option>
+<option value="Assamese">Assamese</option>
+<option value="Avestan">Avestan</option>
+<option value="Balinese">Balinese</option>
+<option value="Batak Karo">BatakKaro</option>
+<option value="Batak Mandailing">BatakManda</option>
+<option value="Batak Pakpak">BatakPakpak</option>
+<option value="Batak Simalungun">BatakSima</option>
+<option value="Batak Toba">BatakToba</option>
+<option value="Bengali">Bengali</option>
+<option value="Bhaiksuki">Bhaiksuki</option>
+<option value="Brahmi">Brahmi</option>
+<option value="Buginese (Lontara)">Buginese</option>
+<option value="Buhid">Buhid</option>
+<option value="Burmese (Myanmar)">Burmese</option>
+<option value="Chakma">Chakma</option>
+<option value="Cham">Cham</option>
+<option value="Cyrillic (Russian)">RussianCyrillic</option>
+<option value="Devanagari">Devanagari</option>
+<option value="Dogra">Dogra</option>
+<option value="Gondi (Gunjala)">GunjalaGondi</option>
+<option value="Gondi (Masaram)">MasaramGondi</option>
+<option value="Grantha">Grantha</option>
+<option value="Grantha (Pandya)">GranthaPandya</option>
+<option value="Gujarati">Gujarati</option>
+<option value="Hanunoo">Hanunoo</option>
+<option value="Javanese">Javanese</option>
+<option value="Kaithi">Kaithi</option>
+<option value="Kannada">Kannada</option>
+<option value="Khamti Shan">KhamtiShan</option>
+<option value="Kharoshthi">Kharoshthi</option>
+<option value="Khmer (Cambodian)">Khmer</option>
+<option value="Khojki">Khojki</option>
+<option value="Khom Thai">KhomThai</option>
+<option value="Khudawadi">Khudawadi</option>
+<option value="Lao">Lao</option>
+<option value="Lao (Pali)">LaoPali</option>
+<option value="Lepcha">Lepcha</option>
+<option value="Limbu">Limbu</option>
+<option value="Mahajani">Mahajani</option>
+<option value="Malayalam">Malayalam</option>
+<option value="Marchen">Marchen</option>
+<option value="Meetei Mayek (Manipuri)">MeeteiMayek</option>
+<option value="Modi">Modi</option>
+<option value="Mon">Mon</option>
+<option value="Mongolian (Ali Gali)">Mongolian</option>
+<option value="Mro">Mro</option>
+<option value="Multani">Multani</option>
+<option value="Newa (Nepal Bhasa)">Newa</option>
+<option value="Old Persian">OldPersian</option>
+<option value="Oriya">Oriya</option>
+<option value="PhagsPa">PhagsPa</option>
+<option value="Punjabi (Gurmukhi)">Gurmukhi</option>
+<option value="Ranjana (Lantsa)">Ranjana</option>
+<option value="Rejang">Rejang</option>
+<option value="Rohingya (Hanifi)">HanifiRohingya</option>
+<option value="Roman (Harvard-Kyoto)">HK</option>
+<option selected value="Roman (IAST)">IAST</option>
+<option value="Roman (IAST: Pāḷi)">IASTPali</option>
+<option value="Roman (IPA)">IPA</option>
+<option value="Roman (ISO 15919)">ISO</option>
+<option value="Roman (ITRANS)">Itrans</option>
+<option value="Roman (Readable)">RomanReadable</option>
+<option value="Roman (SLP1)">SLP1</option>
+<option value="Roman (Titus)">Titus</option>
+<option value="Roman (Velthuis)">Velthuis</option>
+<option value="Roman (WX)">WX</option>
+<option value="Santali (Ol Chiki)">Santali</option>
+<option value="Saurashtra">Saurashtra</option>
+<option value="Shan">Shan</option>
+<option value="Sharada">Sharada</option>
+<option value="Siddham">Siddham</option>
+<option value="Sinhala">Sinhala</option>
+<option value="Sora Sompeng">SoraSompeng</option>
+<option value="Soyombo">Soyombo</option>
+<option value="Sundanese">Sundanese</option>
+<option value="Syloti Nagari">SylotiNagri</option>
+<option value="Tagalog">Tagalog</option>
+<option value="Tagbanwa">Tagbanwa</option>
+<option value="Tai Laing">TaiLaing</option>
+<option value="Takri">Takri</option>
+<option value="Tamil">Tamil</option>
+<option value="Tamil (Extended)">TamilExtended</option>
+<option value="Tamil Brahmi">TamilBrahmi</option>
+<option value="Telugu">Telugu</option>
+<option value="Thaana (Dhivehi)">Thaana</option>
+<option value="Thai">Thai</option>
+<option value="Tham (Lanna)">TaiTham</option>
+<option value="Tham (Lao)">LaoTham</option>
+<option value="Tham (Tai Khuen)">KhuenTham</option>
+<option value="Tham (Tai Lue)">LueTham</option>
+<option value="Tibetan">Tibetan</option>
+<option value="Tirhuta (Maithili)">Tirhuta</option>
+<option value="Urdu">Urdu</option>
+<option value="Vatteluttu">Vatteluttu</option>
+<option value="Wancho">Wancho</option>
+<option value="Warang Citi">WarangCiti</option>
+<option value="Zanabazar Square">ZanabazarSquare</option>
+    //
+  </select>
+</div>
+</includeonly>

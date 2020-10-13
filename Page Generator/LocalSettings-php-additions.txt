@@ -1,0 +1,17 @@
+# added by Ananta
+
+wfLoadExtension( 'Scribunto' );
+$wgScribuntoDefaultEngine = 'luastandalone';
+wfLoadExtension( 'WikiEditor' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'CodeEditor' );
+$wgDefaultUserOptions['usebetatoolbar'] = 1; // user option provided by WikiEditor extension
+#require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php");
+wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'Nuke' );
+wfLoadExtension( 'Gadgets' );
+$wgAllowUserJs = true;
+$wgAllowUserCss = true;
+
+wfLoadExtension( 'Widgets' );
+
